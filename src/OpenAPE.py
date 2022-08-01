@@ -6,7 +6,7 @@ class OpenApeFile:
         ape_lines = []
         with open(self.location, "r") as location:
             ape_lines.append(location.readlines())
-        for i, elem in enumerate(ape_lines[0]):
+        for elem in ape_lines[0]:
             if 'linear' in elem:
                 print("\nThe sequence is linear.\n")
             elif 'circular' in elem:
@@ -22,4 +22,4 @@ class OpenApeFile:
             sequence = sequence.replace(str(j), "")
         return sequence
 
-# C:\\Users\julia\Documents\Python\RestrictionOfCircularDNA\p123.ape
+# C:\Users\julia\Documents\Python\RestrictionOfCircularDNA\data\p123.ape

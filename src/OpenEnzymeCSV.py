@@ -33,7 +33,7 @@ class EnzymeList:
         self.buffer = buffer
 
     def __str__(self):
-        return "enzyme: " + self.name + ", " + self.cut + ", " + self.type + ", " + self.temperature + "°C, " + self.buffer
+        return "enzyme: " + self.name + ", cut: " + self.cut + ", type: " + self.type + ", temperature: " + self.temperature + "°C, buffer: " + self.buffer
 
 
 class OpenEnzymeList:
