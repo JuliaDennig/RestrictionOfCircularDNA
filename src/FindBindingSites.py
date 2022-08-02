@@ -17,12 +17,11 @@ class FindBindingSites:
         enzymes = OpenEnzymeList.open_csv(open_enzymes)
         filter_enzyme_list_all_data = FilterEnzymeListAllData(enzymes)
         enzyme_list_filtered = filter_enzyme_list_all_data.execute_my_filter()
-        for item in enzyme_list_filtered:
-            print(item)
+        # for item in enzyme_list_filtered:
+            # print(item)
         return enzyme_list_filtered
 
     def find_binding_sites(self, sequence, enzyme_list_filtered):
-        append_splits_enzymes = {}
         for i in range(len(enzyme_list_filtered)):
             enzyme_binding = enzyme_list_filtered[i].cut.replace("^", "")
             cut = enzyme_list_filtered[i].cut.find("^")
@@ -41,9 +40,28 @@ class FindBindingSites:
                 for m in binding.finditer(sequence):
                     split = cut + m.start()
                     append_splits.append(split)
+            elif "BglI" == enzyme_list_filtered[i].name:
+                binding = re.compile(r'GCC\w{5}GGC')
+                for n in binding.finditer(sequence):
+                    split = cut + n.start()
+                    append_splits.append(split)
+            elif "BstXI" == enzyme_list_filtered[i].name:
+                binding = re.compile(r'CCA\w{6}TGG')
+                for o in binding.finditer(sequence):
+                    split = cut + o.start()
+                    append_splits.append(split)
+            elif "SfiI" == enzyme_list_filtered[i].name:
+                binding = re.compile(r'GGCC\w{5}GGCC')
+                for p in binding.finditer(sequence):
+                    split = cut + p.start()
+                    append_splits.append(split)
             if append_splits != []:
-                append_splits_enzymes.update({enzyme_list_filtered[i].name:append_splits})
-        print(append_splits_enzymes)
+                enzyme_list_filtered[i].binding_sites = append_splits
+            else:
+                enzyme_list_filtered[i].binding_sites = "none"
+        for item in enzyme_list_filtered:
+            print(item)
+
 
 
 find_bindings = FindBindingSites()
