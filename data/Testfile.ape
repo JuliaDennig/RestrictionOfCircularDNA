@@ -1,0 +1,11 @@
+LOCUS       Testfile                  30 bp ds-DNA     circular     05-AUG-2022
+DEFINITION  .
+ACCESSION   
+VERSION     
+SOURCE      .
+  ORGANISM  .
+COMMENT     
+COMMENT     ApEinfo:methylated:1
+ORIGIN
+        1 TCCgtgtggg tttcacctac ctactgtGGA   
+//

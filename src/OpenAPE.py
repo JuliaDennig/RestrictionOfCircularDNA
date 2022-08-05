@@ -10,7 +10,7 @@ class OpenApeFile:
             if 'linear' in elem:
                 print("\nThe sequence is linear.\n")
             elif 'circular' in elem:
-                print("The sequence is circular.\n")
+                print("\nThe sequence is circular.\n")
         ape_lines = ape_lines[0]
         return ape_lines
     
@@ -23,3 +23,4 @@ class OpenApeFile:
         return sequence
 
 # C:\Users\julia\Documents\Python\RestrictionOfCircularDNA\data\p123.ape
+# C:\Users\julia\Documents\Python\RestrictionOfCircularDNA\data\Testfile.ape
