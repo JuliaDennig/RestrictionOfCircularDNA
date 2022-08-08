@@ -38,17 +38,17 @@ TOP_ENZYMES_RESTRICTION = [
 
 
 class EnzymeList:
-    def __init__(self, name, cut, type, buffer, temperature, binding_sites, band_sizes_one_enzyme):
+    def __init__(self, name, cut, type, buffer, temperature, binding_sites, band_sizes):
         self.name = name
         self.cut = cut
         self.type = type
         self.temperature = temperature
         self.buffer = buffer
         self.binding_sites = binding_sites
-        self.band_sizes_one_enzyme = band_sizes_one_enzyme
+        self.band_sizes = band_sizes
 
     def __str__(self):
-        return "enzyme: " + self.name + ", cut: " + self.cut + ", type: " + self.type + ", temperature: " + self.temperature + "°C, buffer: " + self.buffer + ", binding site(s): " + str(self.binding_sites) + ", band size(s): " + str(self.band_sizes_one_enzyme)
+        return "enzyme: " + self.name + ", cut: " + self.cut + ", type: " + self.type + ", temperature: " + self.temperature + "°C, buffer: " + self.buffer + ", binding site(s): " + str(self.binding_sites) + ", band size(s): " + str(self.band_sizes)
 
 
 class OpenEnzymeList:
