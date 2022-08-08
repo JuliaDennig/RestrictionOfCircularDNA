@@ -42,23 +42,23 @@ class FindBindingSites:
                     append_splits.append(split)
             elif "XcmI" == enzyme_list_filtered[i].name:
                 binding = re.compile(r'CCA\w{9}TGG')
-                for m in binding.finditer(sequence):
-                    split = cut + m.start()
-                    append_splits.append(split)
-            elif "BglI" == enzyme_list_filtered[i].name:
-                binding = re.compile(r'GCC\w{5}GGC')
                 for n in binding.finditer(sequence):
                     split = cut + n.start()
                     append_splits.append(split)
-            elif "BstXI" == enzyme_list_filtered[i].name:
-                binding = re.compile(r'CCA\w{6}TGG')
+            elif "BglI" == enzyme_list_filtered[i].name:
+                binding = re.compile(r'GCC\w{5}GGC')
                 for o in binding.finditer(sequence):
                     split = cut + o.start()
                     append_splits.append(split)
-            elif "SfiI" == enzyme_list_filtered[i].name:
-                binding = re.compile(r'GGCC\w{5}GGCC')
+            elif "BstXI" == enzyme_list_filtered[i].name:
+                binding = re.compile(r'CCA\w{6}TGG')
                 for p in binding.finditer(sequence):
                     split = cut + p.start()
+                    append_splits.append(split)
+            elif "SfiI" == enzyme_list_filtered[i].name:
+                binding = re.compile(r'GGCC\w{5}GGCC')
+                for q in binding.finditer(sequence):
+                    split = cut + q.start()
                     append_splits.append(split)
             splits_list.append(append_splits)
         return splits_list
@@ -80,14 +80,4 @@ class FindBindingSites:
             else:
                 if splits_list:
                     enzyme_list_filtered[q].binding_sites = splits_list[q]
-        for item in enzyme_list_filtered:
-            print(item)
-
-
-find_bindings = FindBindingSites()
-open_ape_file = find_bindings.open_ape_file()
-open_enzyme_csv = find_bindings.open_enzyme_csv()
-generate_alternative_sequence = find_bindings.fuse_beginning_end_of_sequence(open_ape_file)
-find_binding_sites = find_bindings.find_binding_sites(open_ape_file, open_enzyme_csv)
-find_binding_sites_2 = find_bindings.find_binding_sites(generate_alternative_sequence, open_enzyme_csv)
-calculation = find_bindings.calculate_final_bindings_list(find_binding_sites, find_binding_sites_2, open_enzyme_csv, open_ape_file)
+        return enzyme_list_filtered

@@ -4,8 +4,9 @@
     <list default="true" id="60817cfc-edbd-46aa-b6a2-cb93372efbfb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/Enzymes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/Enzymes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalculateBandSizes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculateBandSizes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FindBindingSites.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/FindBindingSites.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenAPE.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenAPE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenEnzymeCSV.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenEnzymeCSV.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +32,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SouthernDigestion" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
