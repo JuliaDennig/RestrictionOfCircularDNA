@@ -9,33 +9,43 @@ class FilterResults:
         self.combined_bindings_list = self.found_bindings.combine_binding_sites_two_enzymes()
         self.band_sizes_two_enzymes = self.found_bindings.calculate_band_sizes_two_enzymes(self.combined_bindings_list)
 
-    def filter_useful_results(self):
+    def filter_useful_results(self, i, list):
+        if len(list.band_sizes) < 3:
+            return False
+        elif list.band_sizes[0] < 300:
+            return False
+        for j in range(len(list.band_sizes)-1):
+            bands_difference = list.band_sizes[j+1] - list.band_sizes[j]
+            if bands_difference < 200 and list.band_sizes[j] < 1000:
+                return False
+            elif bands_difference < 300 and list.band_sizes[j] < 3000:
+                return False
+            elif bands_difference < 800 and list.band_sizes[j+1] > 3000:
+                return False
+
+        return True
+
+    def go_through_filter(self):
         rows = []
         for i in range(len(self.found_bindings.enzyme_list_filtered)):
-            for j in range(len(self.found_bindings.enzyme_list_filtered[i].band_sizes)-1):
-                bands_difference = self.found_bindings.enzyme_list_filtered[i].band_sizes[j+1] - self.found_bindings.enzyme_list_filtered[i].band_sizes[j]
-                if bands_difference < 200 and self.found_bindings.enzyme_list_filtered[i].band_sizes[j] < 1000:
-                    break
-                elif bands_difference < 400 and self.found_bindings.enzyme_list_filtered[i].band_sizes[j] < 3000:
-                    break
-                elif bands_difference < 800 and self.found_bindings.enzyme_list_filtered[i].band_sizes[j+1] > 3000:
-                    break
-                elif len(self.found_bindings.enzyme_list_filtered[i].band_sizes) < 3:
-                    break
-                elif self.found_bindings.enzyme_list_filtered[i].band_sizes[0] < 300:
-                    break
-                else:
-                    rows.append([self.found_bindings.enzyme_list_filtered[i].name,
-                                 self.found_bindings.enzyme_list_filtered[i].cut,
-                                 self.found_bindings.enzyme_list_filtered[i].type,
-                                 self.found_bindings.enzyme_list_filtered[i].temperature,
-                                 self.found_bindings.enzyme_list_filtered[i].buffer,
-                                 self.found_bindings.enzyme_list_filtered[i].binding_sites,
-                                 self.found_bindings.enzyme_list_filtered[i].band_sizes])
+            filter_for_useful_results_one_enzyme = FilterResults.filter_useful_results(self, i, self.found_bindings.enzyme_list_filtered[i])
+            filter_for_useful_results_two_enzymes = FilterResults.filter_useful_results(self, i, self.band_sizes_two_enzymes[i])
+            if filter_for_useful_results_one_enzyme:
+                rows.append([self.found_bindings.enzyme_list_filtered[i].name,
+                             self.found_bindings.enzyme_list_filtered[i].temperature,
+                             self.found_bindings.enzyme_list_filtered[i].buffer,
+                             self.found_bindings.enzyme_list_filtered[i].binding_sites,
+                             self.found_bindings.enzyme_list_filtered[i].band_sizes])
+            elif filter_for_useful_results_two_enzymes:
+                rows.append([self.band_sizes_two_enzymes[i].enzyme_combination,
+                             self.band_sizes_two_enzymes[i].temperature,
+                             [self.band_sizes_two_enzymes[i].buffer_1, self.band_sizes_two_enzymes[i].buffer_2],
+                             self.band_sizes_two_enzymes[i].binding_sites,
+                             self.band_sizes_two_enzymes[i].band_sizes])
         return rows
 
     def export_results_to_csv(self, rows):
-        fields = ["enzyme", "cut", "type", "temperature", "buffer", "binding sites", "band sizes"]
+        fields = ["enzyme", "temperature", "buffer", "binding sites", "band sizes"]
         filename = "C:\\Users\\julia\\Documents\\Python\\RestrictionOfCircularDNA\\data\\ResultsForOneEnzyme.csv"
         with open(filename, 'w') as csv_file:
             csv_writer = csv.writer(csv_file)
@@ -43,7 +53,6 @@ class FilterResults:
             csv_writer.writerows(rows)
 
 
-filter = FilterResults()
-useful_results = filter.filter_useful_results()
-print(useful_results)
-filter.export_results_to_csv(useful_results)
+filter_results = FilterResults()
+useful_results = filter_results.go_through_filter()
+filter_results.export_results_to_csv(useful_results)

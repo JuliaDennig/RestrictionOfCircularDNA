@@ -24,3 +24,4 @@ class OpenApeFile:
 
 # C:\Users\julia\Documents\Python\RestrictionOfCircularDNA\data\p123.ape
 # C:\Users\julia\Documents\Python\RestrictionOfCircularDNA\data\Testfile.ape
+# C:\Users\julia\Documents\Python\RestrictionOfCircularDNA\data\pJD8.ape

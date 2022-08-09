@@ -34,8 +34,8 @@ class BandSizes:
                                   self.enzyme_list_filtered[i].binding_sites[0])
                 band_sizes.sort()
                 self.enzyme_list_filtered[i].band_sizes = band_sizes
-        for item in self.enzyme_list_filtered:
-            print(item)
+        #for item in self.enzyme_list_filtered:
+            #print(item)
 
     def combine_binding_sites_two_enzymes(self):
         combined_enzymes_list = []
@@ -81,5 +81,6 @@ class BandSizes:
                                   combined_enzymes_list[i].binding_sites[0])
                 band_sizes.sort()
                 combined_enzymes_list[i].band_sizes = band_sizes
-        #for item in combined_enzymes_list:
-            #print(item)
+        for item in combined_enzymes_list:
+            print(item)
+        return combined_enzymes_list
