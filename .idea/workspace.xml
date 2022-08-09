@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="60817cfc-edbd-46aa-b6a2-cb93372efbfb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ResultsForOneEnzyme.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CalculateBandSizes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculateBandSizes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FilterResults.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/FilterResults.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FindBindingSites.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/FindBindingSites.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenAPE.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenAPE.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

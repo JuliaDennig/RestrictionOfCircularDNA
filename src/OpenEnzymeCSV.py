@@ -48,7 +48,9 @@ class EnzymeList:
         self.band_sizes = band_sizes
 
     def __str__(self):
-        return "enzyme: " + self.name + ", cut: " + self.cut + ", type: " + self.type + ", temperature: " + self.temperature + "°C, buffer: " + self.buffer + ", binding site(s): " + str(self.binding_sites) + ", band size(s): " + str(self.band_sizes)
+        return "enzyme: " + self.name + ", cut: " + self.cut + ", type: " + self.type + ", temperature: " \
+               + self.temperature + "°C, buffer: " + self.buffer + ", binding site(s): " + str(self.binding_sites) \
+               + ", band size(s): " + str(self.band_sizes)
 
 
 class OpenEnzymeList:
@@ -83,4 +85,6 @@ class EnzymeListCombined:
         self.band_sizes = band_sizes
 
     def __str__(self):
-        return "enzymes: " + str(self.enzyme_combination) + ", temperature: " + str(self.temperature) + " °C, buffer 1: " + str(self.buffer_1) + ", buffer 2: " + str(self.buffer_2) + ", binding site(s): " + str(self.binding_sites) + ", band size(s): " + str(self.band_sizes)
+        return "enzymes: " + str(self.enzyme_combination) + ", temperature: " + str(self.temperature) \
+               + " °C, buffer 1: " + str(self.buffer_1) + ", buffer 2: " + str(self.buffer_2) + ", binding site(s): " \
+               + str(self.binding_sites) + ", band size(s): " + str(self.band_sizes)

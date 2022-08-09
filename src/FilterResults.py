@@ -9,7 +9,8 @@ class FilterResults:
         self.combined_bindings_list = self.found_bindings.combine_binding_sites_two_enzymes()
         self.band_sizes_two_enzymes = self.found_bindings.calculate_band_sizes_two_enzymes(self.combined_bindings_list)
         self.labels, self.feature_locations = self.found_bindings.find_bindings.features_from_ape()
-        self.cut_features_one_enzyme = self.found_bindings.open_ape_file.check_for_cutting_in_features(self.found_bindings.enzyme_list_filtered, self.feature_locations, self.labels)
+        self.cut_features_one_enzyme = \
+            self.found_bindings.open_ape_file.check_for_cutting_in_features(self.found_bindings.enzyme_list_filtered, self.feature_locations, self.labels)
         self.cut_features_two_enzymes = self.found_bindings.open_ape_file.check_for_cutting_in_features(self.band_sizes_two_enzymes, self.feature_locations, self.labels)
 
     def filter_useful_results(self, list):
@@ -43,7 +44,8 @@ class FilterResults:
             elif filter_for_useful_results_two_enzymes:
                 rows.append([self.band_sizes_two_enzymes[i].enzyme_combination,
                              self.band_sizes_two_enzymes[i].temperature,
-                             self.band_sizes_two_enzymes[i].buffer_1 + " bzw. " + self.band_sizes_two_enzymes[i].buffer_2,
+                             self.band_sizes_two_enzymes[i].buffer_1 + " bzw. "
+                             + self.band_sizes_two_enzymes[i].buffer_2,
                              self.band_sizes_two_enzymes[i].binding_sites,
                              self.band_sizes_two_enzymes[i].band_sizes,
                              self.cut_features_two_enzymes[i]])

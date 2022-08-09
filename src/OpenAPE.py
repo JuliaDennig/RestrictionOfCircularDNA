@@ -22,7 +22,9 @@ class OpenApeFile:
 
     def get_features_from_ape_file(self):
         ape_lines = OpenApeFile.extract_sequence(self)
-        features = []; feature_location = []; labels = []
+        features = []
+        feature_location = []
+        labels = []
         sequence_start = ape_lines.index("ORIGIN\n") + 1
         feature_start = ape_lines.index("FEATURES             Location/Qualifiers\n") + 1
         for k in range(feature_start, sequence_start-1):
@@ -32,12 +34,14 @@ class OpenApeFile:
                 feature_location.append(o)
             if '/label=' in elem:
                 labels.append(o)
-        label_list = []; feature_location_list = []
+        label_list = []
+        feature_location_list = []
         for m in range(0, len(feature_location)):
             binding_site = re.sub('\D', ' ', features[feature_location[m]])
             binding_sites = binding_site.split(" ")
             binding_sites = list(filter(None, binding_sites))
-            label = features[labels[m]].replace("/label=", "").replace("\n", "").replace(" ", "").replace('"', "").replace("\\"," ")
+            label = features[labels[m]].replace("/label=", "").replace("\n", "").replace(" ", "")\
+                .replace('"', "").replace("\\", " ")
             label_list.append(label)
             feature_location_list.append(binding_sites)
         return label_list, feature_location_list
@@ -48,8 +52,7 @@ class OpenApeFile:
             bound_in_feature = []
             for j in range(len(list[i].binding_sites)):
                 for k in range(len(feature_locations)):
-                    if int(list[i].binding_sites[j]) > int(feature_locations[k][0]) \
-                            and int(list[i].binding_sites[j]) < int(feature_locations[k][1]):
+                    if int(feature_locations[k][0]) < int(list[i].binding_sites[j]) < int(feature_locations[k][1]):
                         bound_in_feature.append(labels[k])
             bound_in_feature_per_enzyme.append(bound_in_feature)
         return bound_in_feature_per_enzyme
