@@ -39,16 +39,16 @@ class FilterResults:
             elif filter_for_useful_results_two_enzymes:
                 rows.append([self.band_sizes_two_enzymes[i].enzyme_combination,
                              self.band_sizes_two_enzymes[i].temperature,
-                             [self.band_sizes_two_enzymes[i].buffer_1, self.band_sizes_two_enzymes[i].buffer_2],
+                             self.band_sizes_two_enzymes[i].buffer_1 + " bzw. " + self.band_sizes_two_enzymes[i].buffer_2,
                              self.band_sizes_two_enzymes[i].binding_sites,
                              self.band_sizes_two_enzymes[i].band_sizes])
         return rows
 
     def export_results_to_csv(self, rows):
-        fields = ["enzyme", "temperature", "buffer", "binding sites", "band sizes"]
+        fields = ["enzyme", "temperature in °C", "buffer", "binding sites", "band sizes"]
         filename = "C:\\Users\\julia\\Documents\\Python\\RestrictionOfCircularDNA\\data\\ResultsForOneEnzyme.csv"
         with open(filename, 'w') as csv_file:
-            csv_writer = csv.writer(csv_file)
+            csv_writer = csv.writer(csv_file, delimiter=';')
             csv_writer.writerow(fields)
             csv_writer.writerows(rows)
 
