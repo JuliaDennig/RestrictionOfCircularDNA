@@ -1,8 +1,0 @@
-enzyme;temperature in °C;buffer;binding sites;band sizes
-AscI + HindIII-HF;37;NEB CS bzw. NEB CS/2.1;[2044, 3130, 5925];[1086, 2795, 4109]
-NcoI;37;NEB CS/2.1;[3102, 4605, 5791, 7748];[1186, 1503, 1957, 3344]
-NotI-HF;37;NEB CS/2.1;[3119, 5147, 6197];[1050, 2028, 4912]
-AscI + SacI-HF;37;NEB CS bzw. NEB CS;[2060, 3166, 3473, 5925];[307, 1106, 2452, 4125]
-AscI + SfiI;not compatible;NEB CS bzw. NEB CS/2.1;[3095, 5168, 5925];[757, 2073, 5160]
-SacI-HF;37;NEB CS;[2060, 3166, 3473];[307, 1106, 6577]
-BamHI-HF + ClaI;37;NEB CS/1.1 bzw. NEB CS;[2062, 2606, 5726];[544, 3120, 4326]

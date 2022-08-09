@@ -5,12 +5,17 @@ import re
 
 
 class FindBindingSites:
+    def __init__(self):
+        self.open_ape = OpenApeFile()
+
     def open_ape_file(self):
-        location = input("Where is the ape file saved?")
-        open_ape = OpenApeFile(location)
-        extract = open_ape.extract_sequence()
-        sequence = open_ape.get_information_from_ape_file(extract)
-        return sequence
+        extract = self.open_ape.extract_sequence()
+        sequence = self.open_ape.get_information_from_ape_file(extract)
+        return sequence, self.open_ape
+
+    def features_from_ape(self):
+        labels, feature_locations = self.open_ape.get_features_from_ape_file()
+        return labels, feature_locations
 
     def open_enzyme_csv(self):
         open_enzymes = OpenEnzymeList("C:\\Users\\julia\\Documents\\Python\\RestrictionOfCircularDNA\\data\\Enzymes.csv")
