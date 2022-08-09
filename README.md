@@ -15,7 +15,11 @@ The restriction results in a minimum of three bands. All resulting bands are big
 
 ## How do the single files of the program work together?
 The file `OpenAPE.py` takes the location of the `.ape`-files, opens them and saves the features, their locations and the sequence.
+
 The file `OpenEnzymeCSV.py` extracts the information about the enzymes from the given `Enzymes.csv`.
+
 The file `FindBindingSites.py` takes the sequence from `OpenAPE.py` and the enzyme binding sequences from `OpenEnzymeCSV.py` and calculates the binding sites of the enzymes.
+
 The file `CalculateBandSizes.py` calculates the band sizes of one/two enzymes based on the binding sites from `FindBindingSites.py`.
+
 The file `FilterResults.py` filters the results meeting the criteria listed above, adds information in which features the chosen enzymes cut the cirular DNA and returns all results into a `.csv`-file at a location of choice.
