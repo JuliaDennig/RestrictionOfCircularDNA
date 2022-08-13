@@ -15,27 +15,31 @@ class BandSizes:
                                                                                      self.find_binding_sites_2,
                                                                                      self.open_enzyme_csv,
                                                                                      self.sequence)
+        self.combined_bindings_list = self.combine_binding_sites_two_enzymes()
 
-    def calculate_band_sizes_one_enzyme(self):
-        for i in range(len(self.enzyme_list_filtered)):
+    def calculate_band_sizes(self, is_one_enzyme):
+        instance_var = self.enzyme_list_filtered if is_one_enzyme else self.combined_bindings_list
+        for i in range(len(instance_var)):
             band_sizes = []
-            if len(self.enzyme_list_filtered[i].binding_sites) == 1:
+            amount_binding_sites = len(instance_var[i].binding_sites)
+            if amount_binding_sites == 1:
                 band_sizes.append(len(self.sequence))
-                self.enzyme_list_filtered[i].band_sizes = band_sizes
-            elif len(self.enzyme_list_filtered[i].binding_sites) == 0:
+                instance_var[i].band_sizes = band_sizes
+            elif amount_binding_sites == 0:
                 band_sizes.append("none")
-                self.enzyme_list_filtered[i].band_sizes = band_sizes
+                instance_var[i].band_sizes = band_sizes
             else:
-                for j in range(len(self.enzyme_list_filtered[i].binding_sites) - 1):
-                    band = self.enzyme_list_filtered[i].binding_sites[j + 1] - \
-                           self.enzyme_list_filtered[i].binding_sites[j]
+                for j in range(amount_binding_sites - 1):
+                    band = instance_var[i].binding_sites[j + 1] - \
+                           instance_var[i].binding_sites[j]
                     band_sizes.append(band)
-                band_sizes.append(len(self.sequence) - self.enzyme_list_filtered[i].binding_sites[-1] +
-                                  self.enzyme_list_filtered[i].binding_sites[0])
+                band_sizes.append(len(self.sequence) - instance_var[i].binding_sites[-1] +
+                                  instance_var[i].binding_sites[0])
                 band_sizes.sort()
-                self.enzyme_list_filtered[i].band_sizes = band_sizes
-        # for item in self.enzyme_list_filtered:
+                instance_var[i].band_sizes = band_sizes
+        # for item in instance_var:
             # print(item)
+        return instance_var
 
     def combine_binding_sites_two_enzymes(self):
         combined_enzymes_list = []
@@ -51,8 +55,7 @@ class BandSizes:
                         and self.enzyme_list_filtered[j].binding_sites != [] \
                         and sorted_two_enzymes not in two_enzymes_list:
                     two_enzymes_list.append(sorted_two_enzymes)
-                    combined_bindings = self.enzyme_list_filtered[i].binding_sites + self.enzyme_list_filtered[
-                        j].binding_sites
+                    combined_bindings = self.enzyme_list_filtered[i].binding_sites + self.enzyme_list_filtered[j].binding_sites
                     combined_bindings.sort()
                     combined_enzymes = EnzymeListCombined(unsorted_two_enzymes, "", self.enzyme_list_filtered[i].buffer,
                                                           self.enzyme_list_filtered[j].buffer, combined_bindings, "")
@@ -61,27 +64,6 @@ class BandSizes:
                     else:
                         combined_enzymes.temperature = "not compatible"
                     combined_enzymes_list.append(combined_enzymes)
-        # for item in combined_enzymes_list:
-            # print(item)
-        return combined_enzymes_list
-
-    def calculate_band_sizes_two_enzymes(self, combined_enzymes_list):
-        for i in range(len(combined_enzymes_list)):
-            band_sizes = []
-            if len(combined_enzymes_list[i].binding_sites) == 1:
-                band_sizes.append(len(self.open_ape_file))
-                combined_enzymes_list[i].band_sizes = band_sizes
-            elif len(combined_enzymes_list[i].binding_sites) == 0:
-                band_sizes.append("none")
-                combined_enzymes_list[i].band_sizes = band_sizes
-            else:
-                for j in range(len(combined_enzymes_list[i].binding_sites) - 1):
-                    band = combined_enzymes_list[i].binding_sites[j + 1] - combined_enzymes_list[i].binding_sites[j]
-                    band_sizes.append(band)
-                band_sizes.append(len(self.sequence) - combined_enzymes_list[i].binding_sites[-1] +
-                                  combined_enzymes_list[i].binding_sites[0])
-                band_sizes.sort()
-                combined_enzymes_list[i].band_sizes = band_sizes
         # for item in combined_enzymes_list:
             # print(item)
         return combined_enzymes_list

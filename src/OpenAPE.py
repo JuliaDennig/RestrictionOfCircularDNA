@@ -37,7 +37,7 @@ class OpenApeFile:
         label_list = []
         feature_location_list = []
         for m in range(0, len(feature_location)):
-            binding_site = re.sub('\D', ' ', features[feature_location[m]])
+            binding_site = re.sub('\\D', ' ', features[feature_location[m]])
             binding_sites = binding_site.split(" ")
             binding_sites = list(filter(None, binding_sites))
             label = features[labels[m]].replace("/label=", "").replace("\n", "").replace(" ", "")\
@@ -46,13 +46,13 @@ class OpenApeFile:
             feature_location_list.append(binding_sites)
         return label_list, feature_location_list
 
-    def check_for_cutting_in_features(self, list, feature_locations, labels):
+    def check_for_cutting_in_features(self, instance_var, feature_locations, labels):
         bound_in_feature_per_enzyme = []
-        for i in range(len(list)):
+        for i in range(len(instance_var)):
             bound_in_feature = []
-            for j in range(len(list[i].binding_sites)):
+            for j in range(len(instance_var[i].binding_sites)):
                 for k in range(len(feature_locations)):
-                    if int(feature_locations[k][0]) < int(list[i].binding_sites[j]) < int(feature_locations[k][1]):
+                    if int(feature_locations[k][0]) < int(instance_var[i].binding_sites[j]) < int(feature_locations[k][1]):
                         bound_in_feature.append(labels[k])
             bound_in_feature_per_enzyme.append(bound_in_feature)
         return bound_in_feature_per_enzyme
