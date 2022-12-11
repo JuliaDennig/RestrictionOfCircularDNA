@@ -21,4 +21,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         path: dist/*
-        name: dist-${{ matrix.platform }}
+        name: dist-${{ matrix.os}}
