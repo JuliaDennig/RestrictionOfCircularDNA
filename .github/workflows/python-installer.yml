@@ -1,0 +1,24 @@
+# adapted from here: https://github.com/pyinstaller/pyinstaller/issues/6296
+# build a windows and python installable
+on:
+  push:
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['windows-latest','macos-latest']
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: "3.10"
+    - run: pip install pyinstaller
+    - run: pyinstaller src/openape.py
+    # Optionally verify that it works (provided that it does not need user interaction)
+    #- run: ./dist/your-code/your-code
+    - uses: actions/upload-artifact@v2
+      with:
+        path: dist/*
+        name: dist-${{ matrix.os}}
